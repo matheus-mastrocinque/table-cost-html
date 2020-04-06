@@ -156,8 +156,8 @@ const fatura = [
     }
 ]
 
-var corpo_tabela = document.querySelector("tbody");
-var corpo_tabelaTotal = document.querySelector("#bodytotal");
+var bodyTable = document.querySelector("tbody");
+var bodyTableTotal = document.querySelector("#bodytotal");
 var lancamento;
 var valor;
 var mes;
@@ -165,25 +165,24 @@ var total = 0;
 var mesTotal;
 
 createLineTable = function () {
-    // create elements
+    // criando os elementos
     let lineHtml = document.createElement("tr");
-    let campo_lancamento = document.createElement("td");
-    let campo_valor = document.createElement("td");
-    let campo_mes = document.createElement("td");
-    // aplicar estilo
-    // create nodes
-    let textNode_lancamento = document.createTextNode(lancamento);
-    let textNode_valor = document.createTextNode(valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-    let textNode_mes = document.createTextNode(mes);
-    // link nodes to elements
-    campo_lancamento.appendChild(textNode_lancamento);
-    campo_valor.appendChild(textNode_valor);
-    campo_mes.appendChild(textNode_mes);
-    lineHtml.appendChild(campo_lancamento);
-    lineHtml.appendChild(campo_valor);
-    lineHtml.appendChild(campo_mes);
-    // link the elements to the document
-    corpo_tabela.appendChild(lineHtml);
+    let campoLancamento = document.createElement("td");
+    let campoValor = document.createElement("td");
+    let campoMes = document.createElement("td");
+    // criandos os nós
+    let textNodeLancamento = document.createTextNode(lancamento);
+    let textNodeValor = document.createTextNode(valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+    let textNodeMes = document.createTextNode(mes);
+    // linkando os nós aos elementos
+    campoLancamento.appendChild(textNodeLancamento);
+    campoValor.appendChild(textNodeValor);
+    campoMes.appendChild(textNodeMes);
+    lineHtml.appendChild(campoLancamento);
+    lineHtml.appendChild(campoValor);
+    lineHtml.appendChild(campoMes);
+    // linkando os elementos ao documento HTML
+    bodyTable.appendChild(lineHtml);
 }
 
 var faturaMes = fatura.sort(function  (a, b) {
@@ -198,21 +197,20 @@ for(var i = 0; i < faturaMes.length; i++) {
 }
 
 createLineTotalSpend = function () {
-    // create elements
+    // criando os elementos
     let lineHtmlTotal = document.createElement("tr");
-    let campo_valor = document.createElement("td");
-    let campo_mes = document.createElement("td");
-    // aplicar estilo
-    // create nodes
-    let textNode_mes = document.createTextNode(mesTotal);
-    let textNode_valor = document.createTextNode(total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-    // link nodes to elements
-    campo_mes.appendChild(textNode_mes);
-    campo_valor.appendChild(textNode_valor);
-    lineHtmlTotal.appendChild(campo_mes);
-    lineHtmlTotal.appendChild(campo_valor);
-    // link the elements to the document
-    corpo_tabelaTotal.appendChild(lineHtmlTotal);
+    let campoValor = document.createElement("td");
+    let campoMes = document.createElement("td");
+    // criandos os nós
+    let textNodeMes = document.createTextNode(mesTotal);
+    let textNodeValor = document.createTextNode(total.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+    // linkando os nós aos elementos
+    campoMes.appendChild(textNodeMes);
+    campoValor.appendChild(textNodeValor);
+    lineHtmlTotal.appendChild(campoMes);
+    lineHtmlTotal.appendChild(campoValor);
+    // linkando os elementos ao documento HTML
+    bodyTableTotal.appendChild(lineHtmlTotal);
 }
 
 resultado = function(x) { 
@@ -221,7 +219,6 @@ resultado = function(x) {
     for (var cont = 0; cont < values.length; cont++) {
         total = parseFloat(total) + parseFloat(values[cont]);
     }
-    console.log(total.toFixed(2));
     createLineTotalSpend();
 }
 
